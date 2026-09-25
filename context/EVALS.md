@@ -6,11 +6,11 @@ The first two are written and committed BEFORE any tool sees the spec.
 ## 1. RAT statement
 <!-- One sentence. The assumption that, if false, makes this build pointless,
      and what would show it is false. -->
-The riskiest assumption in delegating <feature> is that ...
+The riskiest assumption is that bolt.new will save the category through my Worker/D1 backend instead of faking it in the browser; I'll know this is false if the category disappears on reload, or if bolt's code stores it somewhere other than the Worker.
 
 ## 2. Prediction Stake (before build, <date and time>)
 <!-- At least one of each. Never edit the prediction text; add resolutions below it. -->
-- **Tight:** At least _ of _ EARS rows will pass on the tool's first output.
+- **Tight:** At least 3 of 7 EARS rows will pass on the tool's first output.
   - Resolved <date>: _ of _.
 - **Loose:** bolt will follow STYLE.md tokens better than AI Studio.
   - Resolved <date>: ...
