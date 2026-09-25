@@ -1,27 +1,15 @@
 ---
 # Tokens: what a machine reads. Replace every value with one pulled from the
 # interface you admire. Guess the hex; precision is HW5's problem.
-color-primary: "#051E39"
-color-accent: "#B39051"
-color-background: "#FFFFFF"
-color-text: "#1A1A1A"
-font-body: "Roboto"
-font-heading: "Roboto Slab"
-font-size-min: 14px
-space-unit: 8px
-radius: 4px
----
-# Tokens: what a machine reads. Replace every value with one pulled from the
-# interface you admire. Guess the hex; precision is HW5's problem.
 color-primary: "#DD2A7B"
 color-accent: "#00C853"
 color-background: "#FFFFFF"
 color-text: "#1A1A1A"
 font-body: "Roboto"
 font-heading: "Instagram Sans (?)"
-# font-size-min: 14px
-# space-unit: 8px
-# radius: 4px
+font-size-min: 14px
+space-unit: 8px
+radius: 4px
 ---
 
 # STYLE.md
