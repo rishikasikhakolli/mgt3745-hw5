@@ -6,12 +6,12 @@
 
 | Feature | Kano | Status |
 |---|---|---|
-| *Category-Based Ranking* | *Must-be* | *Not yet built* |
-| *Text Reviews* | *Must-be* | *Built (HW3), server-backed (HW4)* |
-| *Upload/Sharing* | *Performance* | *Not yet built* |
-| *"Traveled with"* | *Attractive* | *Not yet built* |
-| *Activity Feed* | *Indifferent* | *Not yet built* |
-| *In-App Photo Editing* | *Indifferent* | *Not yet built* |
+| Category-Based Ranking | Must-be | Not yet built |
+| Text Reviews | Must-be | Built (HW3), server-backed (HW4) |
+| Upload/Sharing | Performance | Not yet built |
+| "Traveled with" | Attractive | Not yet built |
+| Activity Feed | Indifferent | Not yet built |
+| In-App Photo Editing | Indifferent | Not yet built |
 
 ## Acceptance criteria (EARS)
 
@@ -31,6 +31,6 @@
 | Store valid entry | PASS | PASS | |
 | Reject missing text | PASS | PASS | |
 | Survive cleared cache | CANNOT TEST YET | PASS | Loaded the page from a private window with no local data and the review text loaded from D1 via the Worker, not localStorage. |
-| Server unreachable | | CANNOT TEST YET | I don't yet have a reliable way to simulate a true network outage from inside Codespaces. |
+| Server unreachable | CANNOT TEST YET |  | I don't yet have a reliable way to simulate a true network outage from inside Codespaces. |
 | Server returns 500 | | PASS | |
 | Second client writes to the same table | | DEFERRED | ADR-002 says so |
