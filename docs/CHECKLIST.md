@@ -9,5 +9,5 @@ Binary answers only. Each No is a row in the EVALS.md error-analysis log.
 | 3 | Are colors and fonts the STYLE.md tokens, or its own? | Yes | | STYLE |
 | 4 | Did it add a dependency? Which? What does that package do? | No | | dependency |
 | 5 | Does it call your Worker, or did it invent its own storage? | No | | architecture |
-| 6 | Run the feature's EARS rows by hand. How many pass? | /  | /  | EARS |
+| 6 | Run the feature's EARS rows by hand. How many pass? | 5/7  | /  | EARS |
 | 7 | Is there anything you cannot explain? Name the line. | | | cannot verify |
