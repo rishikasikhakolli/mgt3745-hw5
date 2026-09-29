@@ -1,0 +1,331 @@
+/* Travlr — photo review app with category folders */
+/* Standards: textContent for user text, bind() for SQL (N/A here), no innerHTML,
+   labels associated with controls, failed requests shown on page, no console.log. */
+
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'travlr_reviews_v1';
+  var CATEGORIES = ['food', 'landmark', 'views', 'activity'];
+  var CATEGORY_LABELS = {
+    food: 'Food',
+    landmark: 'Landmark',
+    views: 'Views',
+    activity: 'Activity'
+  };
+  var CATEGORY_EMOJI = {
+    food: '\u{1F37C}',
+    landmark: '\u{1F3DB}',
+    views: '\u{1F3D4}',
+    activity: '\u{1F3A8}'
+  };
+
+  var state = {
+    reviews: [],
+    activeFilter: 'all',
+    selectedCategory: '',
+    imageDataUrl: ''
+  };
+
+  var dom = {};
+
+  function cacheDom() {
+    dom.form = document.getElementById('review-form');
+    dom.spotName = document.getElementById('spot-name');
+    dom.spotImage = document.getElementById('spot-image');
+    dom.imagePreviewContainer = document.getElementById('image-preview-container');
+    dom.imagePreview = document.getElementById('image-preview');
+    dom.reviewText = document.getElementById('review-text');
+    dom.categoryButtons = document.getElementById('category-buttons');
+    dom.categoryHidden = document.getElementById('review-category');
+    dom.submitBtn = document.getElementById('submit-btn');
+    dom.saveStatus = document.getElementById('save-status');
+    dom.filterBar = document.getElementById('filter-bar');
+    dom.reviewsList = document.getElementById('reviews-list');
+    dom.emptyState = document.getElementById('empty-state');
+    dom.reviewCount = document.getElementById('review-count');
+  }
+
+  function loadReviews() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        state.reviews = JSON.parse(raw);
+      }
+    } catch (err) {
+      state.reviews = [];
+    }
+  }
+
+  function saveReviews() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.reviews));
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function showStatus(message, isError) {
+    dom.saveStatus.textContent = message;
+    dom.saveStatus.className = 'save-status ' + (isError ? 'error' : 'success');
+    dom.saveStatus.classList.remove('hidden');
+  }
+
+  function clearStatus() {
+    dom.saveStatus.textContent = '';
+    dom.saveStatus.classList.add('hidden');
+  }
+
+  function selectCategory(category) {
+    state.selectedCategory = category;
+    dom.categoryHidden.value = category;
+
+    var chips = dom.categoryButtons.querySelectorAll('.category-chip');
+    chips.forEach(function (chip) {
+      var isSelected = chip.getAttribute('data-category') === category;
+      chip.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    });
+  }
+
+  function handleCategoryClick(e) {
+    var chip = e.target.closest('.category-chip');
+    if (!chip) return;
+    selectCategory(chip.getAttribute('data-category'));
+  }
+
+  function handleImageChange() {
+    var file = dom.spotImage.files[0];
+    if (!file) {
+      state.imageDataUrl = '';
+      dom.imagePreviewContainer.classList.add('hidden');
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      state.imageDataUrl = e.target.result;
+      dom.imagePreview.src = state.imageDataUrl;
+      dom.imagePreviewContainer.classList.remove('hidden');
+    };
+    reader.onerror = function () {
+      showStatus('Could not read that image. Please try another file.', true);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function isBlank(str) {
+    return !str || str.trim() === '';
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    clearStatus();
+
+    var spotName = dom.spotName.value.trim();
+    var reviewText = dom.reviewText.value.trim();
+
+    if (isBlank(spotName)) {
+      showStatus('Please enter a spot name.', true);
+      dom.spotName.focus();
+      return;
+    }
+    if (isBlank(reviewText)) {
+      showStatus('Please write a review before saving.', true);
+      dom.reviewText.focus();
+      return;
+    }
+    if (!state.selectedCategory) {
+      showStatus('Please pick a category for this review.', true);
+      return;
+    }
+    if (!state.imageDataUrl) {
+      showStatus('Please upload a photo.', true);
+      return;
+    }
+
+    var entry = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+      spotName: spotName,
+      reviewText: reviewText,
+      category: state.selectedCategory,
+      imageDataUrl: state.imageDataUrl,
+      createdAt: new Date().toISOString()
+    };
+
+    state.reviews.unshift(entry);
+
+    if (!saveReviews()) {
+      state.reviews.shift();
+      showStatus('Could not save — storage may be full. Try a smaller photo.', true);
+      return;
+    }
+
+    showStatus('Saved to ' + CATEGORY_LABELS[entry.category] + '!', false);
+    resetForm();
+    render();
+  }
+
+  function resetForm() {
+    dom.form.reset();
+    state.imageDataUrl = '';
+    state.selectedCategory = '';
+    dom.categoryHidden.value = '';
+    dom.imagePreviewContainer.classList.add('hidden');
+    var chips = dom.categoryButtons.querySelectorAll('.category-chip');
+    chips.forEach(function (chip) {
+      chip.setAttribute('aria-checked', 'false');
+    });
+  }
+
+  function setFilter(filter) {
+    state.activeFilter = filter;
+    var chips = dom.filterBar.querySelectorAll('.filter-chip');
+    chips.forEach(function (chip) {
+      var isActive = chip.getAttribute('data-filter') === filter;
+      chip.classList.toggle('active', isActive);
+      chip.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    render();
+  }
+
+  function handleFilterClick(e) {
+    var chip = e.target.closest('.filter-chip');
+    if (!chip) return;
+    setFilter(chip.getAttribute('data-filter'));
+  }
+
+  function handleDelete(e) {
+    var btn = e.target.closest('.review-delete-btn');
+    if (!btn) return;
+    var id = btn.getAttribute('data-id');
+    state.reviews = state.reviews.filter(function (r) {
+      return r.id !== id;
+    });
+    if (!saveReviews()) {
+      showStatus('Could not delete right now. Please try again.', true);
+      return;
+    }
+    clearStatus();
+    render();
+  }
+
+  function getFilteredReviews() {
+    if (state.activeFilter === 'all') return state.reviews;
+    return state.reviews.filter(function (r) {
+      return r.category === state.activeFilter;
+    });
+  }
+
+  function formatDate(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleDateString(undefined, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    } catch (err) {
+      return '';
+    }
+  }
+
+  function createReviewElement(review) {
+    var li = document.createElement('li');
+    li.className = 'review-card';
+
+    var img = document.createElement('img');
+    img.className = 'review-card-image';
+    img.src = review.imageDataUrl;
+    img.alt = 'Photo of ' + review.spotName;
+    li.appendChild(img);
+
+    var body = document.createElement('div');
+    body.className = 'review-card-body';
+
+    var header = document.createElement('div');
+    header.className = 'review-card-header';
+
+    var title = document.createElement('span');
+    title.className = 'review-card-title';
+    title.textContent = review.spotName;
+    header.appendChild(title);
+
+    var badge = document.createElement('span');
+    badge.className = 'review-category-badge';
+    badge.setAttribute('data-cat', review.category);
+    badge.textContent = CATEGORY_EMOJI[review.category] + ' ' + CATEGORY_LABELS[review.category];
+    header.appendChild(badge);
+
+    body.appendChild(header);
+
+    var text = document.createElement('p');
+    text.className = 'review-card-text';
+    text.textContent = review.reviewText;
+    body.appendChild(text);
+
+    var meta = document.createElement('p');
+    meta.className = 'review-card-meta';
+    meta.textContent = formatDate(review.createdAt);
+    body.appendChild(meta);
+
+    var delBtn = document.createElement('button');
+    delBtn.className = 'review-delete-btn';
+    delBtn.type = 'button';
+    delBtn.textContent = 'Delete';
+    delBtn.setAttribute('data-id', review.id);
+    delBtn.setAttribute('aria-label', 'Delete review of ' + review.spotName);
+    body.appendChild(delBtn);
+
+    li.appendChild(body);
+    return li;
+  }
+
+  function render() {
+    var filtered = getFilteredReviews();
+    dom.reviewsList.textContent = '';
+
+    if (state.reviews.length === 0) {
+      dom.emptyState.textContent = 'No photo reviews added yet.';
+      dom.emptyState.classList.remove('hidden');
+      dom.filterBar.classList.add('hidden');
+      dom.reviewCount.classList.add('hidden');
+      return;
+    }
+
+    dom.emptyState.classList.add('hidden');
+    dom.filterBar.classList.remove('hidden');
+    dom.reviewCount.classList.remove('hidden');
+
+    var totalLabel = state.activeFilter === 'all'
+      ? state.reviews.length + ' review' + (state.reviews.length === 1 ? '' : 's')
+      : filtered.length + ' in ' + CATEGORY_LABELS[state.activeFilter];
+    dom.reviewCount.textContent = totalLabel;
+
+    if (filtered.length === 0) {
+      dom.emptyState.textContent = 'No reviews in ' + CATEGORY_LABELS[state.activeFilter] + ' yet.';
+      dom.emptyState.classList.remove('hidden');
+      return;
+    }
+
+    var fragment = document.createDocumentFragment();
+    filtered.forEach(function (review) {
+      fragment.appendChild(createReviewElement(review));
+    });
+    dom.reviewsList.appendChild(fragment);
+  }
+
+  function init() {
+    cacheDom();
+    loadReviews();
+
+    dom.form.addEventListener('submit', handleSubmit);
+    dom.spotImage.addEventListener('change', handleImageChange);
+    dom.categoryButtons.addEventListener('click', handleCategoryClick);
+    dom.filterBar.addEventListener('click', handleFilterClick);
+    dom.reviewsList.addEventListener('click', handleDelete);
+
+    render();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
