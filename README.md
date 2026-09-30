@@ -1,4 +1,4 @@
-# Entries: The First Delegated Feature
+# Category Filtering: The First Delegated Feature
 
 > Replace this title and every *italic prompt* with your own words. Six
 > sections, in this order: What, See It Work, How to Run, Status, Links,
@@ -8,9 +8,11 @@
 
 *HW4 repository: `https://github.com/rishikasikhakolli/mgt3745-hw4`
 
-*One paragraph naming the problem, the user, and the feature, with links to
+After a review is saved, the app now requires the user to tag it with one of four categories (Food, Landmark, Views, Activity), delegated to bolt.new and Google AI Studio, so the feed can be filtered down to just one category at a time. See [PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md). Review data now lives in Cloudflare D1 via the Worker rather than the browser (ADR-002), and category is stored server-side alongside it, not in localStorage to survive cache clears.
+
+<!--*One paragraph naming the problem, the user, and the feature, with links to
 [PROJECT.md](context/PROJECT.md) and [FEATURES.md](context/FEATURES.md).
-One sentence on where data now lives and why (ADR-002).*
+One sentence on where data now lives and why (ADR-002).*-->
 
 ## See It Work
 
@@ -31,7 +33,7 @@ flowchart LR
 
 ## How to Run
 
-Deployed: *`https://mgt3745-hw4.YOUR-SUBDOMAIN.workers.dev/entries`*
+Deployed: *`https://mgt3745-hw4.travlr.workers.dev/entries`*
 
 From a fresh Codespace:
 
@@ -41,7 +43,7 @@ From a fresh Codespace:
 3. Paste the deployed URL into `app.js` as `API`.
 4. Right-click `index.html`, choose **Open with Live Server**.
 
-Run the code eval: `API=https://mgt3745-hw4.YOUR-SUBDOMAIN.workers.dev npm test`
+Run the code eval: `API=https://mgt3745-hw4.travlr.workers.dev npm test`
 
 ![npm test passing](docs/npm-test.png)
 
@@ -51,11 +53,16 @@ To run the Worker locally instead: `npm run dev` (port 8787, local D1 emulator).
 
 | Feature | EARS statement | Verdict |
 |---|---|---|
-| *Save an entry* | *WHEN a valid entry is submitted, THE SYSTEM SHALL store it* | *PASS* |
-| *Reject empty entry* | *IF text is missing, THEN THE SYSTEM SHALL reject with a reason* | *PASS* |
-| *Survive cleared cache* | *THE SYSTEM SHALL return stored entries on any device* | *PASS* |
-| *Network down* | *IF the server is unreachable, THE SYSTEM SHALL tell the user* | *CANNOT TEST YET* |
-| *Two clients, one table* | *...* | *DEFERRED (ADR-002)* |
+| Return entries in order | THE SYSTEM SHALL return all entries in creation order. | PASS |
+| Store valid entry | WHEN a valid entry is submitted, THE SYSTEM SHALL store it and confirm. | PASS |
+| Reject missing text | IF the entry text is missing, THEN THE SYSTEM SHALL reject it and say why. | PASS |
+| Server unreachable | IF the server cannot be reached, THEN THE SYSTEM SHALL tell the user on the page. | CANNOT TEST YET |
+| Reject whitespace-only text | IF the entry text is empty or contains only whitespace, THEN THE SYSTEM SHALL reject it and say why. | PASS |
+| Prompt for category before save completes | WHEN a review is saved, THE SYSTEM SHALL prompt the user to select a category from {Food, Landmark, Views, Activity}. | PASS |
+| Store and display category | THE SYSTEM SHALL store the selected category with its entry and display it on the review card. | PASS |
+| Filter narrows the feed | WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | PASS |
+| Reject invalid category | IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 error naming the allowed categories. | PASS |
+| No filter shows everything | WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | PASS |
 
 *Full verification table lives in [FEATURES.md](context/FEATURES.md).*
 
