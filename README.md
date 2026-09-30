@@ -1,9 +1,5 @@
 # Category Filtering: The First Delegated Feature
 
-> Replace this title and every *italic prompt* with your own words. Six
-> sections, in this order: What, See It Work, How to Run, Status, Links,
-> AI Use. GitHub renders this page; it can show, not only tell.
-
 ## What
 
 *HW4 repository: `https://github.com/rishikasikhakolli/mgt3745-hw4`
