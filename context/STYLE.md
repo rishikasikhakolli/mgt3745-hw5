@@ -42,8 +42,6 @@ radius: 4px
 
 ## Sources
 
-- **Admired:** Instagram
-<img width="150" alt="IMG_2598" src="https://github.com/user-attachments/assets/02629a22-4e03-4f90-b7c4-fbd050261620" />
+- **Admired:** [Instagram](docs/Instagram.md)
 
-- **Resented:** Reddit
-<img width="150" alt="IMG_2599" src="https://github.com/user-attachments/assets/7b8d38e4-1cca-4594-874b-cab3f0cb30a7" />
+- **Resented:** [Reddit](docs/Reddit.md)
