@@ -1,5 +1,5 @@
 // evals/worker.test.js
-// The code eval. Run with:   API=https://mgt3745-hw4.<you>.workers.dev npm test
+// The code eval. Run with:   API=https://mgt3745-hw4.travlr.workers.dev npm test
 // Each test names the EARS row it checks. Add at least one for your new feature.
 import { test } from "node:test";
 import assert from "node:assert/strict";
