@@ -12,7 +12,7 @@ One sentence on where data now lives and why (ADR-002).*-->
 
 ## See It Work
 
-An entry appearing in a second browser. ![See it work.](docs/SecondBrowser.md)
+An entry appearing in a second browser. [See it work.](docs/SecondBrowser.md)
 
 ```mermaid
 flowchart LR
