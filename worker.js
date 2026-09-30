@@ -1,9 +1,6 @@
 // worker.js
 // The whole server. Read it before you deploy it.
 //
-// One function. Cloudflare calls it with every request that reaches your
-// workers.dev URL and sends back whatever Response you return.
-//
 // Four things to recognize here, because you will need to recognize them
 // later in code you did not write:
 //   env.DB      the D1 binding from wrangler.toml (no connection string, nothing to leak)
@@ -11,13 +8,13 @@
 //   status 400  the EARS "unwanted behavior" row, executable
 //   CORS        headers that tell the browser your page is allowed to call this Worker
 
-// Session B uses "*" so everyone's page works on the first try.
-// HW4 Craft credit: replace "*" with your page's origin once it is deployed.
 const CORS = {
-  "access-control-allow-origin": "*",
+  "access-control-allow-origin": "https://cuddly-space-zebra-5jrr75gjq76c79gg-5500.app.github.dev",
   "access-control-allow-methods": "GET, POST, OPTIONS",
   "access-control-allow-headers": "content-type",
 };
+
+const ALLOWED_CATEGORIES = ["Food", "Landmark", "Views", "Activity"];
 
 export default {
   async fetch(request, env) {
@@ -66,8 +63,13 @@ async function handle(request, env) {
     if (!body.text || !body.text.trim()) {
       return new Response("text must not be empty", { status: 400, headers: CORS });
     }
-    const result = await env.DB.prepare("INSERT INTO entries (text) VALUES (?)")
-      .bind(body.text).run();
+    if (!ALLOWED_CATEGORIES.includes(body.category)) {
+      return new Response(
+        "category must be one of: " + ALLOWED_CATEGORIES.join(", "),
+        { status: 400, headers: CORS });
+    }
+    const result = await env.DB.prepare("INSERT INTO entries (text, category) VALUES (?, ?)")
+      .bind(body.text, body.category).run();
     return new Response(JSON.stringify({ id: result.meta.last_row_id }), {
       status: 201,
       headers: { ...CORS, "content-type": "application/json" },
