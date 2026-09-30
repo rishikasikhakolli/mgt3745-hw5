@@ -45,7 +45,7 @@ From a fresh Codespace:
 
 Run the code eval: `API=https://mgt3745-hw4.travlr.workers.dev npm test`
 
-![npm test passing](../docs/npm-test.md)
+![npm test passing](docs/npm-test.md)
 
 To run the Worker locally instead: `npm run dev` (port 8787, local D1 emulator).
 
