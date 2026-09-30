@@ -16,13 +16,25 @@ The riskiest assumption is that bolt.new will save the category through my Worke
   - Resolved <date>: ...
 - **Open:** The tool will introduce a dependency I did not ask for. Resolves when I read package.json.
   - Resolved <date>: ...
+## 2. Prediction Stake (before build, <date and time — from your Session B commit>)
+<!-- At least one of each. Never edit the prediction text; add resolutions below it. -->
+- **Tight:** At least 3 of 7 EARS rows will pass on the tool's first output.
+  - Resolved 2026-09-29: 5 of 7.
+- **Loose:** bolt will follow STYLE.md tokens better than AI Studio.
+  -   - Resolved 2026-09-29: bolt matched 7 of 8 STYLE.md tokens exactly while AI Studio renamed them and matched only 4.
+- **Open:** The tool will introduce a dependency I did not ask for. Resolves when I read package.json.
+  - Resolved 2026-09-29: False. No dependency added — bolt's export used only vanilla DOM APIs (fetch, FileReader, querySelectorAll), package.json unchanged.
 
 ## 3. Success criteria
 | EARS row (feature) | Checked by | Where |
 |---|---|---|
-| WHEN ..., THE SYSTEM SHALL ... | test | evals/worker.test.js, "..." |
-| IF ..., THEN THE SYSTEM SHALL ... | judgment | docs/JUDGMENT.md #8 |
-| THE SYSTEM SHALL ... | human | README, See It Work |
+| WHEN a review is saved, THE SYSTEM SHALL prompt the user to select a category from {Food, Landmark, Views, Activity}. | human | README, See It Work |
+| THE SYSTEM SHALL store the selected category with its entry and display it on the review card. | test | evals/worker.test.js, "POST /entries stores category" |
+| WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | human | README, See It Work |
+| IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 naming the allowed categories. | test | evals/worker.test.js, "POST /entries rejects invalid category" |
+| WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | judgment | docs/JUDGMENT.md #4 |
+
+This is still resting on the open question from last time, though: rows 2 and 4 are marked test
 
 ## 4. Error-analysis log
 <!-- Every failure observed, a few words each, counted, sorted by count. -->
