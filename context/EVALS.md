@@ -8,15 +8,7 @@ The first two are written and committed BEFORE any tool sees the spec.
      and what would show it is false. -->
 The riskiest assumption is that bolt.new will save the category through my Worker/D1 backend instead of faking it in the browser; I'll know this is false if the category disappears on reload, or if bolt's code stores it somewhere other than the Worker.
 
-## 2. Prediction Stake (before build, <date and time>)
-<!-- At least one of each. Never edit the prediction text; add resolutions below it. -->
-- **Tight:** At least 3 of 7 EARS rows will pass on the tool's first output.
-  - Resolved <date>: _ of _.
-- **Loose:** bolt will follow STYLE.md tokens better than AI Studio.
-  - Resolved <date>: ...
-- **Open:** The tool will introduce a dependency I did not ask for. Resolves when I read package.json.
-  - Resolved <date>: ...
-## 2. Prediction Stake (before build, <date and time — from your Session B commit>)
+## 2. Prediction Stake (before build, 09/29/26 @ 6 PM)
 <!-- At least one of each. Never edit the prediction text; add resolutions below it. -->
 - **Tight:** At least 3 of 7 EARS rows will pass on the tool's first output.
   - Resolved 2026-09-29: 5 of 7.
@@ -33,8 +25,6 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 | WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | human | README, See It Work |
 | IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 naming the allowed categories. | test | evals/worker.test.js, "POST /entries rejects invalid category" |
 | WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | judgment | docs/JUDGMENT.md #4 |
-
-This is still resting on the open question from last time, though: rows 2 and 4 are marked test
 
 ## 4. Error-analysis log
 <!-- Every failure observed, a few words each, counted, sorted by count. -->
