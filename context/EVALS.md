@@ -49,5 +49,5 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 | Reject missing text | PASS | PASS | |
 | Survive cleared cache | CANNOT TEST YET | PASS | Loaded the page from a private window with no local data and the review text loaded from D1 via the Worker, not localStorage. |
 | Server unreachable | | CANNOT TEST YET | I don't yet have a reliable way to simulate a true network outage from inside Codespaces. |
-| Server returns 500 | | PASS | |
+| Server returns 500 | | PASS | Temporarily removed the D1 binding from wrangler.toml and redeployed, confirming the Worker's catch block returns a 500 with a readable error message instead of crashing silently. |
 | Second client writes to the same table | | DEFERRED | ADR-002 says so |
