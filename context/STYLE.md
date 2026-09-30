@@ -42,6 +42,6 @@ radius: 4px
 
 ## Sources
 
-- **Admired:** [Instagram](docs/Instagram.md)
+- **Admired:** [Instagram](../docs/Instagram.md)
 
-- **Resented:** [Reddit](docs/Reddit.md)
+- **Resented:** [Reddit](../docs/Reddit.md)
