@@ -1,6 +1,6 @@
 ---
-# Tokens: what a machine reads. Replace every value with one pulled from the
-# interface you admire. Guess the hex; precision is HW5's problem.
+<!--Tokens: what a machine reads. Replace every value with one pulled from the
+# interface you admire. Guess the hex; precision is HW5's problem.-->
 ---
 color-primary: "#DD2A7B"
 color-accent: "#00C853"
