@@ -18,11 +18,14 @@ Agreement under 80 percent is a finding about the rubric, logged in EVALS.md.-->
 | 9 | Does the form block submission entirely when no category is selected? | Yes | Yes | + |
 | 10 | Does selecting a filter show only entries matching that category, not all entries? | Yes | Yes | + |
 
-Agreement: 9 of 10 (90%)
+**Agreement:** 9 of 10 (90%)
 
 ## Grader 2 prompt (if a model)
 ```
-You are reviewing a diff for a web app, Travlr. I'm attaching worker.js, index.html, app.js, styles.css, my STYLE.md, and STANDARDS.md.
+You are reviewing a diff for a web app, Travlr. I'm attaching worker.js,
+index.html, app.js, styles.css, my STYLE.md, and STANDARDS.md.
 
-Can you answer these 10 questions with just yes or no based on what the code actually does, not what I meant for it to do? I don't want the benefit of the doubt here, just the honest answer:
+Can you answer these 10 questions with just yes or no based on what the code
+actually does, not what I meant for it to do? I don't want the benefit of the
+doubt here, just the honest answer:
 ```
