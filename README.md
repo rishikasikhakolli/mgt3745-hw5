@@ -68,9 +68,9 @@ To run the Worker locally instead: `npm run dev` (port 8787, local D1 emulator).
 
 ## Delegation
 
-- [DDR-001](docs/DDR-001.md): *feature, tool, net hours*
-- [DDR-002](docs/DDR-002.md): *the HW4 Copilot delegation, written up*
-- [Comparison note](docs/COMPARISON.md)
+- [DDR-001](docs/DDR-001.md): Category-Based Ranking, bolt.new, net +1.67 hours
+- [DDR-002](docs/DDR-002.md): the HW4 Copilot array-position metadata bug, written up
+- [Comparison note](docs/COMPARISON.md): bolt vs. AI Studio on the same prompt
 
 ## Links
 
@@ -82,9 +82,4 @@ Reading order for a stranger: [PROJECT.md](context/PROJECT.md) →
 
 ## AI Use
 
-*Every delegation has a DDR under Delegation above. Hours spent on this assignment: ___.*
-
-*Retired text: Three proto-DDR questions. What did the agent write? What did you check,
-and how? What could you not fully verify, and what did you do about it?
-For the Worker specifically: name the thing you could not fully inspect.
-Hours spent: ___.*
+Every delegation has a DDR under Delegation above. Hours spent on this assignment: ~10.
