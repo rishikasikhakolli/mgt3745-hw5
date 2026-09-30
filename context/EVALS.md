@@ -21,10 +21,11 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 | EARS row (feature) | Checked by | Where |
 |---|---|---|
 | WHEN a review is saved, THE SYSTEM SHALL prompt the user to select a category from {Food, Landmark, Views, Activity}. | human | README, See It Work |
-| THE SYSTEM SHALL store the selected category with its entry and display it on the review card. | test | evals/worker.test.js, "POST /entries stores category" |
+| THE SYSTEM SHALL store the selected category with its entry and display it on the review card. | test | [`evals/worker.test.js#L40`](evals/worker.test.js#L40) |
 | WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | human | README, See It Work |
-| IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 naming the allowed categories. | test | evals/worker.test.js, "POST /entries rejects invalid category" |
-| WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | judgment | docs/JUDGMENT.md #4 |
+| IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 naming the allowed categories. | test | [`evals/worker.test.js#L54`](evals/worker.test.js#L54) |
+| WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | judgment | [`docs/JUDGEMENT.md#L19`](docs/JUDGEMENT.md#L19) |
+docs/JUDGMENT.md #10 |
 
 ## 4. Error-analysis log
 <!-- Every failure observed, a few words each, counted, sorted by count. -->
