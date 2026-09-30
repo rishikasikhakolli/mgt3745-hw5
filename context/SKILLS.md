@@ -13,7 +13,7 @@ errors; never throw to the console.
 
 **Because:** localStorage never failed; the network does (ADR-002).
 
-### Delegation guidance: what to paste, what to check first
+## Delegation guidance: what to paste, what to check first
 **Paste, in order:** PROJECT, FEATURES (rows marked), STYLE, STANDARDS, TOOLS, then the current page files. One instruction line naming the files it may touch.
 
 **Check first:** the diff's file list, then innerHTML / concatenated SQL, then whether it used the tokens.
