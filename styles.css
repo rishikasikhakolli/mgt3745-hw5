@@ -167,3 +167,62 @@ button:hover {
   white-space: pre-wrap;
   color: var(--text-color);
 }
+
+#category-buttons, #filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-unit);
+}
+
+#filter-bar {
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.category-chip, .filter-chip {
+  width: auto;
+  padding: calc(var(--space-unit) * 0.75) calc(var(--space-unit) * 1.5);
+  border: 1px solid var(--border-color);
+  border-radius: calc(var(--radius) * 3);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.category-chip:hover, .filter-chip:hover {
+  background-color: var(--bg-color);
+}
+
+.category-chip[aria-checked="true"], .filter-chip.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.category-chip[aria-checked="true"]:hover, .filter-chip.active:hover {
+  background-color: var(--primary-hover);
+}
+
+.category-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: calc(var(--space-unit) * 0.4) calc(var(--space-unit) * 1);
+  border-radius: calc(var(--radius) * 3);
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.review-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-unit);
+  margin-bottom: calc(var(--space-unit) * 1.5);
+}
+
+.review-card-header .review-card-title {
+  margin-bottom: 0;
+}
