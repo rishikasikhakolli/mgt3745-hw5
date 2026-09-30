@@ -19,7 +19,7 @@ One sentence on where data now lives and why (ADR-002).*-->
 *A GIF or screenshot in `/docs` showing an entry surviving a cleared cache
 or appearing in a second browser. Evidence and storefront at once.*
 
-![See it work](../docs/SecondBrowser.md)
+![See it work](docs/SecondBrowser.md)
 
 ```mermaid
 flowchart LR
