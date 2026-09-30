@@ -38,6 +38,7 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 
 ## 5. Evals
 - **Code:** `npm test` with `API=https://mgt3745-hw4.travlr.workers.dev`; 6 tests, 6 passing. Screenshot in README.
+- [`README.md`](../docs/README.md#L17)
 - **Judgment:** docs/JUDGMENT.md, 10 questions, two graders, agreement 90%.
 
 ## Verification table (carried from HW4)
