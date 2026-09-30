@@ -14,5 +14,4 @@ under 5 MB so GitHub renders it inline.
 
 <img width="150" alt="IMG_2598" src="https://github.com/user-attachments/assets/02629a22-4e03-4f90-b7c4-fbd050261620" />
 
-npm test
 <img width="553" height="497" alt="• @rishikasikhakolli (main) (main)s export APIhttpsng" src="https://github.com/user-attachments/assets/e74e56f3-36ea-4dbe-bc3e-af76ce6deaa2" />
