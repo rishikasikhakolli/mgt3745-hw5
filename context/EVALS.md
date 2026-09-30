@@ -30,7 +30,7 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 <!-- Every failure observed, a few words each, counted, sorted by count. -->
 | Failure (a few words) | Count | Source | Category |
 |---|---|---|---|
-| Category picker showed up after saving, but couldn't work once category needed to be validated at save time | 2 | bolt, AI Studio | architecture | | 2 | bolt, AI Studio | architecture |
+| Post-save modal for category couldn't work once category needed same-request validation | 1 | AI Studio | architecture |
 | Discarded Worker/D1 persistence, rebuilt entirely in localStorage | 1 | bolt | architecture |
 | Renamed all STYLE.md tokens, matched only 4 of 8 values | 1 | AI Studio | STYLE |
 | App's real styles.css tokens (blue primary, system fonts) don't match STYLE.md's documented tokens (pink, Roboto) — pre-existing, surfaced by judgment eval | 1 | app | STYLE |
