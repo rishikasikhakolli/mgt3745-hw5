@@ -7,9 +7,9 @@ color-background: "#FFFFFF"
 color-text: "#1A1A1A"
 font-body: "Roboto"
 font-heading: "Georgia"
-# font-size-min: 14px
-# space-unit: 8px
-# radius: 4px
+font-size-min: 14px
+space-unit: 8px
+radius: 4px
 ---
 
 
