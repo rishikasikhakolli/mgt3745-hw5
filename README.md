@@ -33,7 +33,7 @@ flowchart LR
 
 ## How to Run
 
-Deployed: *`https://mgt3745-hw4.travlr.workers.dev/entries`*
+Deployed: `https://mgt3745-hw4.travlr.workers.dev/entries`
 
 From a fresh Codespace:
 
