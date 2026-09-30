@@ -20,9 +20,9 @@ The riskiest assumption is that bolt.new will save the category through my Worke
 ## 3. Success criteria
 | EARS row (feature) | Checked by | Where |
 |---|---|---|
-| WHEN a review is saved, THE SYSTEM SHALL prompt the user to select a category from {Food, Landmark, Views, Activity}. | human | README, See It Work |
+| WHEN a review is saved, THE SYSTEM SHALL prompt the user to select a category from {Food, Landmark, Views, Activity}. | human | [CategorySelection.md](docs/CategorySelection.md) |
 | THE SYSTEM SHALL store the selected category with its entry and display it on the review card. | test | [`evals/worker.test.js#L40`](../evals/worker.test.js#L40) |
-| WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | human | README, See It Work |
+| WHEN the user selects a filter, THE SYSTEM SHALL display only entries matching that category. | human | [CategorySelection.md](docs/CategorySelection.md) |
 | IF the category is missing or outside the allowed set, THEN THE SYSTEM SHALL reject it with a 400 naming the allowed categories. | test | [`evals/worker.test.js#L54`](../evals/worker.test.js#L54) |
 | WHEN no filter is selected, THE SYSTEM SHALL display entries from all categories. | judgment | docs/JUDGMENT.md #10 |
 
