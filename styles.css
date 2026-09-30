@@ -2,23 +2,26 @@
    Presentation only. The tokens below should match context/STYLE.md;
    when you change one, change both. */
 :root {
-  --primary-color: #2b6cb0;
-  --primary-hover: #1a4971;
-  --bg-color: #f7fafc;
+  --primary-color: #DD2A7B;
+  --primary-hover: #a81f5c;
+  --accent-color: #00C853;
+  --bg-color: #FFFFFF;
   --card-bg: #ffffff;
-  --text-color: #2d3748;
+  --text-color: #1A1A1A;
   --border-color: #e2e8f0;
-  --success-color: #2f855a;
+  --success-color: #00C853;
   --error-color: #c53030;
 
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-heading: Georgia, "Times New Roman", serif;
+  --font-size-min: 14px;
   --space-unit: 8px;
   --radius: 4px;
 }
 
 body {
   font-family: var(--font-body);
+  font-size: var(--font-size-min);
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.5;
@@ -118,8 +121,8 @@ button:hover {
 }
 
 #save-status.success {
-  background-color: #c6f6d5;
-  color: var(--success-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 #save-status.error {
@@ -138,11 +141,15 @@ button:hover {
 }
 
 .review-card {
-  border: 1px solid var(--border-color);
-  border-radius: calc(var(--radius) * 1.5);
-  padding: calc(var(--space-unit) * 2);
-  margin-bottom: calc(var(--space-unit) * 3);
-  background-color: #ffffff;
+  padding: calc(var(--space-unit) * 2) 0;
+  margin-bottom: calc(var(--space-unit) * 2);
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.review-card:not(:first-child) {
+  border-top: 1px solid var(--primary-color);
 }
 
 .review-card-title {
@@ -207,22 +214,4 @@ button:hover {
 .category-badge {
   font-size: 0.8rem;
   font-weight: 600;
-  padding: calc(var(--space-unit) * 0.4) calc(var(--space-unit) * 1);
-  border-radius: calc(var(--radius) * 3);
-  background-color: var(--bg-color);
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  white-space: nowrap;
-}
-
-.review-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-unit);
-  margin-bottom: calc(var(--space-unit) * 1.5);
-}
-
-.review-card-header .review-card-title {
-  margin-bottom: 0;
-}
+  padding:
